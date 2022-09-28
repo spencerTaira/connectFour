@@ -45,19 +45,10 @@ function makeEmptyRow(){
 
 function makeHtmlBoard() {
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
+  const htmlBoard = document.querySelector('#board');
 
-  // TODO: add comment for this code
-  let top = document.createElement("tr");
-  top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
-
-  // TODO: add comment for this code
-  for (let x = 0; x < WIDTH; x++) {
-    let headCell = document.createElement("td");
-    headCell.setAttribute("id", x);
-    top.append(headCell);
-  }
-  htmlBoard.append(top);
+  // add top row to our htmlBoard element
+  htmlBoard.append(createColumnTops());
 
   // dynamically creates the main part of html board
   // uses HEIGHT to create table rows
@@ -79,6 +70,26 @@ function makeHtmlBoard() {
   }
 }
 
+/** create column tops
+ * expected input: none
+ * expected output: html element of column tops with 'click' event listener added
+ */
+
+function createColumnTops() {
+  // creating element 'tr' that will hold the column tops element and adding an event
+  // listener 'click' to it
+  let top = document.createElement("tr");
+  top.setAttribute("id", "column-top");
+  top.addEventListener("click", handleClick);
+
+  // creating one 'td' per column and appending to 'tr' element top
+  for (let x = 0; x < WIDTH; x++) {
+    let headCell = document.createElement("td");
+    headCell.setAttribute("id", x);
+    top.append(headCell);
+  }
+  return top;
+}
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
