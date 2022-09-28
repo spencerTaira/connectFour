@@ -141,6 +141,7 @@ function handleClick(evt) {
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
   placeInTable(y, x);
+  updateMemBoard(y, x);
 
   // check for win
   if (checkForWin()) {
@@ -148,12 +149,35 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+  if(isBoardFilled()) endGame();
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
+  switchPlayer();
 }
 
+/** This will accept y and x and update in-memory board with appropriate
+ * player #
+*/
+function updateMemBoard(y, x) {
+  board[y][x] = currPlayer === 1 ? 1 : 2;
+}
+
+/** This checks our in-memory board to see if all spots are filled */
+function isBoardFilled() {
+  for (let x = 0; x < WIDTH; x++) {
+    if (findSpotForCol(x) !== null) return false;
+  }
+  return true;
+}
+
+/**This will switch players or throw an error if currPlayer is not 1 or 2 */
+function switchPlayer() {
+  if (currPlayer === 1) currPlayer = 2;
+  else if (currPlayer === 2) currPlayer = 1;
+  else {
+    throw new Error('Unkown Player Has Entered the Game');
+  }
+}
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
 function checkForWin() {
@@ -193,4 +217,5 @@ function checkForWin() {
   }
 }
 
-makeHtmlBoard(makeEmptyBoard());
+// makeEmptyBoard()
+makeHtmlBoard();
