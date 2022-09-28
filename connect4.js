@@ -23,7 +23,7 @@ let currPlayer = 1; // active player: 1 or 2
 /** When called, makeBoard returns a matrix (WIDTH * HEIGHT) of 0's */
 // for each cell, 0 means empty (no piece),
 //  1 means red/Player1 and 2 means blue/Player2
-function makeBoard() {
+function makeEmptyBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   let emptyBoard = [];
   for(let i = 0; i<HEIGHT; i++){
@@ -165,5 +165,4 @@ function checkForWin() {
   }
 }
 
-makeBoard();
-makeHtmlBoard();
+makeHtmlBoard(makeEmptyBoard());
