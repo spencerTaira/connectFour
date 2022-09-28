@@ -26,3 +26,15 @@
 #column-top td:hover {
   background-color: gold;
 }
+
+.piece{
+  border-radius: 50%;
+}
+
+.piece.p1{
+  background-color: red;
+}
+
+.piece.p2{
+  background-color: blue;
+}

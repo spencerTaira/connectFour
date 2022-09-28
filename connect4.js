@@ -10,8 +10,6 @@
 const WIDTH = 7;
 const HEIGHT = 6;
 
-// TODO: remove these global lets?
-// perhaps we can constantly "pass along" both board state and currentPlayer
 let currPlayer = 1; // active player: 1 or 2
 let board = makeEmptyBoard(); // array of rows, each row is array of cells  (board[y][x])
 
@@ -64,7 +62,7 @@ function makeHtmlBoard() {
  */
 function createHtmlCell(y, x) {
   const tableCell = document.createElement("td");
-  tableCell.setAttribute("id", `${y}-${x}`);
+  tableCell.setAttribute("id", `id${y}-${x}`);
   return tableCell;
 }
 
@@ -109,6 +107,11 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const cell = document.querySelector(`#id${y}-${x}`);
+  const piece = document.createElement('div');
+  const player = (currPlayer === 1) ? 'p1' : 'p2';
+  piece.classList.add('piece', `${player}`);
+  cell.append(piece);
 }
 
 /** endGame: announce game end */
