@@ -13,7 +13,7 @@ const HEIGHT = 6;
 // TODO: remove these global lets?
 // perhaps we can constantly "pass along" both board state and currentPlayer
 let currPlayer = 1; // active player: 1 or 2
-// let board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = makeEmptyBoard(); // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
@@ -26,16 +26,16 @@ let currPlayer = 1; // active player: 1 or 2
 function makeEmptyBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   let emptyBoard = [];
-  for(let i = 0; i<HEIGHT; i++){
+  for (let i = 0; i < HEIGHT; i++) {
     emptyBoard.push(makeEmptyRow());
   }
   return emptyBoard;
 }
 
 /**returns a single-depth array that is a row */
-function makeEmptyRow(){
+function makeEmptyRow() {
   let emptyRow = [];
-  for(let i=0; i<WIDTH; i++){
+  for (let i = 0; i < WIDTH; i++) {
     emptyRow.push(0);
   }
   return emptyRow;
@@ -62,19 +62,19 @@ function makeHtmlBoard() {
  * Expected Input: number (row, col)
  * Expected Output: none
  */
-function createHtmlCell(row, col) {
-    const tableCell = document.createElement("td");
-    tableCell.setAttribute("id", `${row}-${col}`);
-    return tableCell;
+function createHtmlCell(y, x) {
+  const tableCell = document.createElement("td");
+  tableCell.setAttribute("id", `${y}-${x}`);
+  return tableCell;
 }
 
 /** create multiple 'tr' equivalent to global constant Height
  * Expected Input: number (row)
  */
-function createHtmlRow(row) {
+function createHtmlRow(y) {
   const tableRow = document.createElement("tr");
-  for (let col = 0; col < WIDTH; col++) {
-    tableRow.append(createHtmlCell(row, col));
+  for (let x = 0; x < WIDTH; x++) {
+    tableRow.append(createHtmlCell(y, x));
   }
   return tableRow;
 }
