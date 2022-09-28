@@ -10,15 +10,35 @@
 const WIDTH = 7;
 const HEIGHT = 6;
 
+// TODO: remove these global lets?
+// perhaps we can constantly "pass along" both board state and currentPlayer
 let currPlayer = 1; // active player: 1 or 2
-let board = []; // array of rows, each row is array of cells  (board[y][x])
+// let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
+ *    returns a matrix
  */
 
+/** When called, makeBoard returns a matrix (WIDTH * HEIGHT) of 0's */
+// for each cell, 0 means empty (no piece),
+//  1 means red/Player1 and 2 means blue/Player2
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  let emptyBoard = [];
+  for(let i = 0; i<HEIGHT; i++){
+    emptyBoard.push(makeEmptyRow());
+  }
+  return emptyBoard;
+}
+
+/**returns a single-depth array that is a row */
+function makeEmptyRow(){
+  let emptyRow = [];
+  for(let i=0; i<WIDTH; i++){
+    emptyRow.push(0);
+  }
+  return emptyRow;
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
