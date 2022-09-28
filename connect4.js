@@ -99,8 +99,14 @@ function createColumnTops() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 5
-  return 5;
+  let outputY = null;
+  for(let y = 0; y < HEIGHT; y++){
+    if(board[y][x]===0){
+      outputY = y;
+      break;
+    }
+  }
+  return outputY;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
